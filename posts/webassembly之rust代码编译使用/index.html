@@ -1,0 +1,36 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>WebAssembly之rust代码编译使用 | 不三之选</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="基本操作、"><meta name=generator content="Hugo 0.111.3"><meta name=robots content="noindex, nofollow"><link rel=stylesheet href=/ananke/css/main.min.css><meta property="og:title" content="WebAssembly之rust代码编译使用"><meta property="og:description" content="基本操作、"><meta property="og:type" content="article"><meta property="og:url" content="/posts/webassembly%E4%B9%8Brust%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E4%BD%BF%E7%94%A8/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-04-03T20:10:25+08:00"><meta property="article:modified_time" content="2018-04-03T20:10:25+08:00"><meta itemprop=name content="WebAssembly之rust代码编译使用"><meta itemprop=description content="基本操作、"><meta itemprop=datePublished content="2018-04-03T20:10:25+08:00"><meta itemprop=dateModified content="2018-04-03T20:10:25+08:00"><meta itemprop=wordCount content="107"><meta itemprop=keywords content="rust,"><meta name=twitter:card content="summary"><meta name=twitter:title content="WebAssembly之rust代码编译使用"><meta name=twitter:description content="基本操作、"></head><body class="ma0 avenir bg-near-white"><header><div class=bg-dark-gray><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l justify-between items-center center"><a href=/ class="f3 fw2 hover-white no-underline white-90 dib">不三之选</a><div class="flex-l items-center"><ul class="pl0 mr3"><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white no-underline white-90" href=/posts/ title="Posts page">Posts</a></li></ul><div class=ananke-socials></div></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l flex-wrap justify-between mw8 center ph3"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked">POSTS</aside><div id=sharing class="mt3 ananke-socials"></div><h1 class="f1 athelas mt3 mb1">WebAssembly之rust代码编译使用</h1><p class=tracked>By <strong>uncoder</strong></p><time class="f6 mv4 dib tracked" datetime=2018-04-03T20:10:25+08:00>April 3, 2018</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>基本操作、</p><h1 id=安装环境>安装环境</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>// 安装rust
+</span></span><span style=display:flex><span>curl https://sh.rustup.rs -sSf | sh
+</span></span><span style=display:flex><span>// 更新版本
+</span></span><span style=display:flex><span>rustup update
+</span></span><span style=display:flex><span>// 安装开发版
+</span></span><span style=display:flex><span>rustup toolchain install nightly
+</span></span><span style=display:flex><span>// 安装打包依赖
+</span></span><span style=display:flex><span>rustup target add wasm32-unknown-unknown --toolchain nightly
+</span></span><span style=display:flex><span>&lt;!-- 分割线 --&gt;
+</span></span><span style=display:flex><span>// 安装压缩工具
+</span></span><span style=display:flex><span>cargo install --git https://github.com/alexcrichton/wasm-gc
+</span></span><span style=display:flex><span>// 压缩文件
+</span></span><span style=display:flex><span>wasm-gc hello.wasm small-hello.wasm
+</span></span></code></pre></div><h1 id=测试>测试</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>// 新建文件hello.rs
+</span></span><span style=display:flex><span>extern <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    fn alert<span style=color:#f92672>(</span>ptr: *const u8, number: u32<span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#[no_mangle]</span>
+</span></span><span style=display:flex><span>pub extern fn run<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    unsafe <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        let x <span style=color:#f92672>=</span> b<span style=color:#e6db74>&#34;Hello World!\0&#34;</span>;
+</span></span><span style=display:flex><span>        alert<span style=color:#f92672>(</span>x as *const u8, 42<span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>// shell编译
+</span></span><span style=display:flex><span>rustc +nightly --target<span style=color:#f92672>=</span>wasm32-unknown-unknown -O --crate-type<span style=color:#f92672>=</span>cdylib hello.rs -o hello.wasm
+</span></span><span style=display:flex><span>// 命令备注
+</span></span><span style=display:flex><span><span style=color:#75715e># +nightly 指明使用nightly版本</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># --target 指定编译器后</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># -O == -C opt-level=2</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># -C opt-level=2 指定优化级别为2，范围是 0-3</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># --create-type=cdylib 添加一个由编译器接受的crate类型，称为cdylib，它对应于从Rust动态库中导出的C接口。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># -o 指定输出文件名</span>
+</span></span></code></pre></div><ul class=pa0><li class="list di"><a href=/tags/rust/ class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">rust</a></li></ul><div class="mt6 instapaper_ignoref"></div></div><aside class="w-30-l mt6-l"></aside></article></main><footer class="bg-dark-gray bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href=/>&copy; 不三之选 2023</a><div><div class=ananke-socials></div></div></div></footer></body></html>

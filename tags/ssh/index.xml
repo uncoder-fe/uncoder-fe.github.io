@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ssh on 不三之选</title><link>/tags/ssh/</link><description>Recent content in ssh on 不三之选</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 14 Jun 2017 20:08:28 +0800</lastBuildDate><atom:link href="/tags/ssh/index.xml" rel="self" type="application/rss+xml"/><item><title>树莓派之环境初始化</title><link>/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B9%8B%E7%8E%AF%E5%A2%83%E5%88%9D%E5%A7%8B%E5%8C%96/</link><pubDate>Wed, 14 Jun 2017 20:08:28 +0800</pubDate><guid>/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B9%8B%E7%8E%AF%E5%A2%83%E5%88%9D%E5%A7%8B%E5%8C%96/</guid><description>&lt;h1 id="安装系统">安装系统&lt;/h1>
+&lt;ul>
+&lt;li>下载&lt;a href="https://www.raspberrypi.org/downloads/">地址&lt;/a>&lt;/li>
+&lt;li>刷入系统&lt;a href="https://etcher.io/">etcher&lt;/a>
+备注：需要外置键盘、鼠标、hdmi 显示器&lt;/li>
+&lt;/ul></description></item></channel></rss>

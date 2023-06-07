@@ -1,0 +1,32 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>centos之开机自启动服务 | 不三之选</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="用frp内网穿透做个例子"><meta name=generator content="Hugo 0.111.3"><meta name=robots content="noindex, nofollow"><link rel=stylesheet href=/ananke/css/main.min.css><meta property="og:title" content="centos之开机自启动服务"><meta property="og:description" content="用frp内网穿透做个例子"><meta property="og:type" content="article"><meta property="og:url" content="/posts/centos%E4%B9%8B%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-03-15T16:33:39+08:00"><meta property="article:modified_time" content="2018-03-15T16:33:39+08:00"><meta itemprop=name content="centos之开机自启动服务"><meta itemprop=description content="用frp内网穿透做个例子"><meta itemprop=datePublished content="2018-03-15T16:33:39+08:00"><meta itemprop=dateModified content="2018-03-15T16:33:39+08:00"><meta itemprop=wordCount content="60"><meta itemprop=keywords content="centos 7,debian 9,frp,"><meta name=twitter:card content="summary"><meta name=twitter:title content="centos之开机自启动服务"><meta name=twitter:description content="用frp内网穿透做个例子"></head><body class="ma0 avenir bg-near-white"><header><div class=bg-dark-gray><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l justify-between items-center center"><a href=/ class="f3 fw2 hover-white no-underline white-90 dib">不三之选</a><div class="flex-l items-center"><ul class="pl0 mr3"><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white no-underline white-90" href=/posts/ title="Posts page">Posts</a></li></ul><div class=ananke-socials></div></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l flex-wrap justify-between mw8 center ph3"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked">POSTS</aside><div id=sharing class="mt3 ananke-socials"></div><h1 class="f1 athelas mt3 mb1">centos之开机自启动服务</h1><p class=tracked>By <strong>uncoder</strong></p><time class="f6 mv4 dib tracked" datetime=2018-03-15T16:33:39+08:00>March 15, 2018</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>用frp内网穿透做个例子</p><h1 id=centos-7x>centos 7.x</h1><h2 id=新增编辑libsystemdsystemfrpservice>新增/编辑<code>/lib/systemd/system/frp.service</code></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[</span>Unit<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>Description<span style=color:#f92672>=</span>frp proxy Server Service
+</span></span><span style=display:flex><span>Wants<span style=color:#f92672>=</span>network-online.target
+</span></span><span style=display:flex><span>After<span style=color:#f92672>=</span>network.target network-online.target
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>Service<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>Type<span style=color:#f92672>=</span>simple
+</span></span><span style=display:flex><span>EnvironmentFile<span style=color:#f92672>=</span>/usr/lib/frp_0.16.0_linux_amd64/frps_full.ini
+</span></span><span style=display:flex><span>ExecStart<span style=color:#f92672>=</span>/usr/lib/frp_0.16.0_linux_amd64/frps -c /usr/lib/frp_0.16.0_linux_amd64/frps.ini
+</span></span><span style=display:flex><span>ExecStop<span style=color:#f92672>=</span>/bin/kill -s QUIT $MAINPID
+</span></span><span style=display:flex><span>PrivateTmp<span style=color:#f92672>=</span>true
+</span></span><span style=display:flex><span>KillMode<span style=color:#f92672>=</span>process
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>Install<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>WantedBy<span style=color:#f92672>=</span>multi-user.target
+</span></span></code></pre></div><h1 id=跑起来>跑起来</h1><pre tabindex=0><code>systemctl start frp.service
+systemctl enable frp.service
+</code></pre><p><em>&mdash;</em>&mdash;<em>&mdash;</em>&mdash;<em>&mdash;</em>&mdash;<em>分割线</em>&mdash;<em>&mdash;</em>&mdash;<em>&mdash;</em></p><h1 id=debian-9x>debian 9.x</h1><h2 id=新增编辑-libsystemdsystemfrpservice>新增/编辑 /lib/systemd/system/frp.service</h2><p>ExecStartPre这个很重要，frp启动需要睡觉才行</p><pre tabindex=0><code>[Unit]
+Description=frp proxy Server Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 30
+ExecStart=/usr/lib/frp_0.21.0_linux_arm/frpc -c /usr/lib/frp_0.21.0_linux_arm/frpc.ini
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+</code></pre><ul class=pa0><li class="list di"><a href=/tags/centos-7/ class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">centos 7</a></li><li class="list di"><a href=/tags/debian-9/ class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">debian 9</a></li><li class="list di"><a href=/tags/frp/ class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">frp</a></li></ul><div class="mt6 instapaper_ignoref"></div></div><aside class="w-30-l mt6-l"></aside></article></main><footer class="bg-dark-gray bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href=/>&copy; 不三之选 2023</a><div><div class=ananke-socials></div></div></div></footer></body></html>

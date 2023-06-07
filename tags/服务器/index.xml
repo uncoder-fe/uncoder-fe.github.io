@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>服务器 on 不三之选</title><link>/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</link><description>Recent content in 服务器 on 不三之选</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 27 Oct 2017 10:02:00 +0800</lastBuildDate><atom:link href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml"/><item><title>vps折腾记录</title><link>/posts/vps%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/</link><pubDate>Fri, 27 Oct 2017 10:02:00 +0800</pubDate><guid>/posts/vps%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/</guid><description>&lt;h1 id="os-选择以及使用">OS 选择以及使用&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>debian &lt;span style="color:#ae81ff">9&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/var/log 通用日志
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/etc 通用配置文件
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>修改ssh端口
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/etc/ssh/sshd_config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/etc/ssh/ssh_config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>service ssh restart
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>查看占用
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netstat -lnp | grep ss-server
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>查看进程
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ps -ax | grep ss-server
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>结束PID对应的进程
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kill -9 &lt;span style="color:#f92672">[&lt;/span>PID&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>查找文件
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>find . -name &lt;span style="color:#e6db74">&amp;#34;*.json&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>查看所有端口使用
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netstat –apn
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netstat -anp|grep &lt;span style="color:#ae81ff">80&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>查看80端口使用
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>lsof -i:80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>结束nginx
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pkill -9 -f nginx
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>后台挂起运行
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>nohup xxxxxx &amp;amp;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>下载文件
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>scp -r root@0.0.0.0: /folder /localfolder
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

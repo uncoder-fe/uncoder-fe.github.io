@@ -1,0 +1,75 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>每天进步一点点 | 不三之选</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="一些零碎的记录."><meta name=generator content="Hugo 0.111.3"><meta name=robots content="noindex, nofollow"><link rel=stylesheet href=/ananke/css/main.min.css><meta property="og:title" content="每天进步一点点"><meta property="og:description" content="一些零碎的记录."><meta property="og:type" content="article"><meta property="og:url" content="/posts/%E6%AF%8F%E5%A4%A9%E8%BF%9B%E6%AD%A5%E4%B8%80%E7%82%B9%E7%82%B9/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-08-27T00:09:14+08:00"><meta property="article:modified_time" content="2019-08-27T00:09:14+08:00"><meta itemprop=name content="每天进步一点点"><meta itemprop=description content="一些零碎的记录."><meta itemprop=datePublished content="2019-08-27T00:09:14+08:00"><meta itemprop=dateModified content="2019-08-27T00:09:14+08:00"><meta itemprop=wordCount content="351"><meta itemprop=keywords content="点滴,"><meta name=twitter:card content="summary"><meta name=twitter:title content="每天进步一点点"><meta name=twitter:description content="一些零碎的记录."></head><body class="ma0 avenir bg-near-white"><header><div class=bg-dark-gray><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l justify-between items-center center"><a href=/ class="f3 fw2 hover-white no-underline white-90 dib">不三之选</a><div class="flex-l items-center"><ul class="pl0 mr3"><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white no-underline white-90" href=/posts/ title="Posts page">Posts</a></li></ul><div class=ananke-socials></div></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l flex-wrap justify-between mw8 center ph3"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked">POSTS</aside><div id=sharing class="mt3 ananke-socials"></div><h1 class="f1 athelas mt3 mb1">每天进步一点点</h1><p class=tracked>By <strong>uncoder-fe</strong></p><time class="f6 mv4 dib tracked" datetime=2019-08-27T00:09:14+08:00>August 27, 2019</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>一些零碎的记录.</p><h1 id=2023-年-6-月-07-日>2023 年 6 月 07 日</h1><p>获取点击的相对位置</p><pre tabindex=0><code>方法一
+// 受到transform影响，旋转/缩放
+const { left: containerLeft, top: containerTop } = pixelWrapperRef.current.getBoundingClientRect();
+const { clientX, clientY } = event.nativeEvent;
+const offsetX = convertScaleToOriginValue(clientX - containerLeft);
+const offsetY = convertScaleToOriginValue(clientY - containerTop);
+</code></pre><pre tabindex=0><code>方法二
+// 不受transform影响
+const { offsetX, offsetY } = event.nativeEvent;
+</code></pre><h1 id=2023-年-6-月-06-日>2023 年 6 月 06 日</h1><p>Safari禁用滚动</p><pre tabindex=0><code>document.addEventListener(mousemoveEvent, handleMouseMove, { passive: false })
+</code></pre><h1 id=2023-年-2-月-24-日>2023 年 2 月 24 日</h1><p>react防抖处理
+来源：https://dmitripavlutin.com/react-throttle-debounce/</p><pre tabindex=0><code>// Option A:
+const debouncedChangeHandler = useCallback(
+  debounce((args) =&gt; {
+    console.log(&#34;args&#34;, args);
+  }, 500),
+  []
+);
+// Option B:
+const debouncedChangeHandler = useMemo(
+  () =&gt;
+    debounce((args) =&gt; {
+      console.log(&#34;args&#34;, args);
+    }, 500),
+  []
+);
+...
+&lt;div onClick={()=&gt;debouncedChangeHandler({name:&#39;tom&#39;})}&gt;tom&lt;/div&gt;
+</code></pre><h1 id=2023-年-2-月-1-日>2023 年 2 月 1 日</h1><p>puppeteer监听页面性能，以及资源加载情况</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>performance</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>evaluate</span>(() =&gt; <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(window.<span style=color:#a6e22e>performance</span>)))
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;performance&#39;</span>, <span style=color:#a6e22e>performance</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>performanceEntries</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>evaluate</span>(() =&gt; <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(window.<span style=color:#a6e22e>performance</span>.<span style=color:#a6e22e>getEntries</span>())))
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>failedLoadRequest</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>performanceEntries</span>.<span style=color:#a6e22e>filter</span>((<span style=color:#a6e22e>item</span>) =&gt; <span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>transferSize</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>0</span>)
+</span></span></code></pre></div><h1 id=2022-年-2-月-17-日>2022 年 2 月 17 日</h1><p>当<code>d3.select('div').style('visibility', children.length > 0 ? 'visible' : 'hidden')</code>这句代码，把<code>visible</code>改成<code>auto</code>时,失效</p><h1 id=2021-年-10-月-29-日>2021 年 10 月 29 日</h1><p>由于默认的视窗大小是<code>800*600</code>,所以一些图表库计算宽度和高度时候会有问题。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#a6e22e>puppeteer</span>.<span style=color:#a6e22e>launch</span>({
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>defaultViewport</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>width</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>800</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>height</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><h1 id=2021-年-9-月-7-日>2021 年 9 月 7 日</h1><p>serviceWorker在页面不可见之后，只能存活1分钟左右，为了让它活着，可以考虑一个定时器持续激活它</p><pre tabindex=0><code>if (navigator.serviceWorker) {
+    setInterval(function () {
+        navigator.serviceWorker.controller.postMessage({
+            type: &#39;keepAlive&#39;,
+        });
+    }, 5000);
+}
+</code></pre><h1 id=2020-年-9-月-28-日>2020 年 9 月 28 日</h1><p>html2canvas使用</p><ul><li>问题1: 版本之间差异性很大。</li><li>问题2: 尽量使用svg，解决文本对齐。</li><li>问题3: fontVariant = &rsquo;normal&rsquo;解决文本缩放。</li><li>问题4: 使用content-box，解决位置计算不准确的问题。变异盒模型会导致计算精度降低，尽量使用向上取整（磨平损失）。</li></ul><h1 id=2020-年-5-月-22-日>2020 年 5 月 22 日</h1><p>如果想使用<code>fontSize</code>调整svg的大小，宽度/高度可以设置为<code>em</code>单位</p><p>如果想使用<code>color</code>调整svg的颜色，path的fill色值设置为<code>currentColor</code></p><pre tabindex=0><code>&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;1em&#34; height=&#34;1em&#34; viewBox=&#34;0 0 16 16&#34;&gt;
+    &lt;g fill=&#34;none&#34; fill-rule=&#34;evenodd&#34;&gt;
+        &lt;path d=&#34;M0 0H16V16H0z&#34;/&gt;
+        &lt;path fill=&#34;currentColor&#34; d=&#34;M13.333.667c.369 0 .667.298.667.666v8.334c0 .184-.15.333-.333.333H3.333v4h10.334c.184 0 .333.15.333.333V15c0 .184-.15.333-.333.333h-11c-.369 0-.667-.298-.667-.666v-13c0-.533.416-.968.941-.999L3 .667h10.333zm-1 10.666c.184 0 .334.15.334.334v.666c0 .184-.15.334-.334.334H5c-.184 0-.333-.15-.333-.334v-.666c0-.184.149-.334.333-.334h7.333z&#34;/&gt;
+    &lt;/g&gt;
+&lt;/svg&gt;
+</code></pre><h1 id=2020-年-4-月-9-日>2020 年 4 月 9 日</h1><p>除了fork，我们还有其他方式修改package</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 安装
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>npm</span> <span style=color:#a6e22e>i</span> <span style=color:#a6e22e>patch</span><span style=color:#f92672>-</span><span style=color:#66d9ef>package</span>  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 修改package.json
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#e6db74>&#34;script&#34;</span><span style=color:#f92672>:</span>{
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;postinstall&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;patch-package&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 根目录创建一个文件夹 patches
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 修改node_modules/html-webpack-plugin包的某行代码，直接保存
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 执行
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> <span style=color:#a6e22e>npx</span> <span style=color:#a6e22e>patch</span><span style=color:#f92672>-</span><span style=color:#66d9ef>package</span> <span style=color:#a6e22e>html</span><span style=color:#f92672>-</span><span style=color:#a6e22e>webpack</span><span style=color:#f92672>-</span><span style=color:#a6e22e>plugin</span>
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span><span style=color:#75715e>// patches目录里会自动生成修改的patch
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> 
+</span></span><span style=display:flex><span><span style=color:#75715e>// 其他人使用时候，执行以下命令，更新到node_modules
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>npm</span> <span style=color:#a6e22e>run</span> <span style=color:#a6e22e>postinstall</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 结束
+</span></span></span></code></pre></div><p>参考链接<a href=https://github.com/jantimon/html-webpack-plugin/issues/1129#issuecomment-600482080>1</a></p><h1 id=2020-年-3-月-17-日>2020 年 3 月 17 日</h1><p>webview做文本框选菜单点击时，会先触发blur，导致window.getSelection()拿到空值/随机值，可以考虑使用selectionChange事件缓存。</p><h1 id=2020-年-1-月-02-日>2020 年 1 月 02 日</h1><p>cssmodules，罪状1: 二次嵌套无法使用:not()</p><p>cssmodules，罪状2: 标签嵌套样式类无法使用</p><h1 id=2019-年-11-月-06-日>2019 年 11 月 06 日</h1><p>卧槽，卧槽，没有beginpath，clearRect之后，在画，旧痕迹还在</p><h1 id=2019-年-10-月-23-日>2019 年 10 月 23 日</h1><p>对于高亮的方式，可以对数据的每一项设置active，或者设置一个公共变量去存储，然后比对。</p><h1 id=2019-年-10-月-22-日>2019 年 10 月 22 日</h1><p>避免使用sort排序数组对象，再传递给redux，否则不会更新。给redux塞入数据时，最好是深拷贝。</p><h1 id=2019-年-10-月-14-日>2019 年 10 月 14 日</h1><p>设置svg的mask的作用范围<code>maskUnits</code></p><h1 id=2019-年-9-月-30-日>2019 年 9 月 30 日</h1><p>通过消息机制可以被动处理好多事情，并且消息通过指定行为和参数或者promise（resolve执行后触发外界promise.then）或者匿名引用函数体，告知某一个组件执行（比如白板执行撤销/清空机制）</p><h1 id=2019-年-9-月-28-日>2019 年 9 月 28 日</h1><p>css伪元素的定位会随着滚动移动，所以做mask时，可以和需要mask的元素同级，然后通过<code>pointEvent:none</code>点透</p><h1 id=2019-年-8-月-26-日>2019 年 8 月 26 日</h1><p>使用这个可以，创建脱离父级组件，但是事件冒泡依然存在的组件</p><pre tabindex=0><code>ReactDOM.createPortal(child, container)
+</code></pre><ul class=pa0><li class="list di"><a href=/tags/%E7%82%B9%E6%BB%B4/ class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">点滴</a></li></ul><div class="mt6 instapaper_ignoref"></div></div><aside class="w-30-l mt6-l"></aside></article></main><footer class="bg-dark-gray bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href=/>&copy; 不三之选 2023</a><div><div class=ananke-socials></div></div></div></footer></body></html>

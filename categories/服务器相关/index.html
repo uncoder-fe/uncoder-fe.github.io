@@ -1,0 +1,37 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>服务器相关 | 不三之选</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content><meta name=generator content="Hugo 0.111.3"><meta name=robots content="noindex, nofollow"><link rel=stylesheet href=/ananke/css/main.min.css><link href=/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/index.xml rel=alternate type=application/rss+xml title=不三之选><link href=/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/index.xml rel=feed type=application/rss+xml title=不三之选><meta property="og:title" content="服务器相关"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/"><meta itemprop=name content="服务器相关"><meta itemprop=description content><meta name=twitter:card content="summary"><meta name=twitter:title content="服务器相关"><meta name=twitter:description content></head><body class="ma0 avenir bg-near-white"><header><div class="pb3-m pb6-l bg-dark-gray"><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l justify-between items-center center"><a href=/ class="f3 fw2 hover-white no-underline white-90 dib">不三之选</a><div class="flex-l items-center"><ul class="pl0 mr3"><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white no-underline white-90" href=/posts/ title="Posts page">Posts</a></li></ul><div class=ananke-socials></div></div></div></nav><div class="tc-l pv3 ph3 ph4-ns"><h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">服务器相关</h1></div></div></header><main class=pb7 role=main><article class="cf pa3 pa4-m pa4-l"><div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray"><p>Below you will find pages that utilize the taxonomy term “服务器相关”</p></div></article><div class="mw8 center"><section class="flex-ns flex-wrap justify-around mt5"><div class="relative w-100 mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height"><div class="bg-white mb3 pa4 gray overflow-hidden"><span class="f6 db">Posts</span><h1 class="f3 near-black"><a href=/posts/vps%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/ class="link black dim">vps折腾记录</a></h1><div class="nested-links f5 lh-copy nested-copy-line-height"><h1 id=os-选择以及使用>OS 选择以及使用</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>debian <span style=color:#ae81ff>9</span>
+</span></span><span style=display:flex><span>/var/log  通用日志
+</span></span><span style=display:flex><span>/etc      通用配置文件
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>修改ssh端口
+</span></span><span style=display:flex><span>/etc/ssh/sshd_config
+</span></span><span style=display:flex><span>/etc/ssh/ssh_config
+</span></span><span style=display:flex><span>service ssh restart
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>查看占用
+</span></span><span style=display:flex><span>netstat -lnp | grep ss-server
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>查看进程
+</span></span><span style=display:flex><span>ps -ax | grep ss-server
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>结束PID对应的进程
+</span></span><span style=display:flex><span>kill -9 <span style=color:#f92672>[</span>PID<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>查找文件
+</span></span><span style=display:flex><span>find . -name <span style=color:#e6db74>&#34;*.json&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>查看所有端口使用
+</span></span><span style=display:flex><span>netstat –apn
+</span></span><span style=display:flex><span>netstat -anp|grep <span style=color:#ae81ff>80</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>查看80端口使用
+</span></span><span style=display:flex><span>lsof -i:80
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>结束nginx
+</span></span><span style=display:flex><span>pkill -9 -f nginx
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>后台挂起运行
+</span></span><span style=display:flex><span>nohup xxxxxx &amp;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>下载文件
+</span></span><span style=display:flex><span>scp -r root@0.0.0.0: /folder /localfolder
+</span></span></code></pre></div></div></div></div></div><div class="relative w-100 mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height"><div class="bg-white mb3 pa4 gray overflow-hidden"><span class="f6 db">Posts</span><h1 class="f3 near-black"><a href=/posts/docker%E4%B9%8B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/ class="link black dim">Docker之常用命令</a></h1><div class="nested-links f5 lh-copy nested-copy-line-height"><p>常用命令</p></div></div></div></div></section></div></main><footer class="bg-dark-gray bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href=/>&copy; 不三之选 2023</a><div><div class=ananke-socials></div></div></div></footer></body></html>

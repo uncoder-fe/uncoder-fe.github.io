@@ -1,0 +1,63 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>esxi硬盘RDM直通 | 不三之选</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="RDM直通和挂载"><meta name=generator content="Hugo 0.111.3"><meta name=robots content="noindex, nofollow"><link rel=stylesheet href=/ananke/css/main.min.css><meta property="og:title" content="esxi硬盘RDM直通"><meta property="og:description" content="RDM直通和挂载"><meta property="og:type" content="article"><meta property="og:url" content="/posts/esxi%E7%A1%AC%E7%9B%98rdm%E7%9B%B4%E9%80%9A/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-03-17T16:01:25+08:00"><meta property="article:modified_time" content="2022-03-17T16:01:25+08:00"><meta itemprop=name content="esxi硬盘RDM直通"><meta itemprop=description content="RDM直通和挂载"><meta itemprop=datePublished content="2022-03-17T16:01:25+08:00"><meta itemprop=dateModified content="2022-03-17T16:01:25+08:00"><meta itemprop=wordCount content="313"><meta itemprop=keywords content="esxi,"><meta name=twitter:card content="summary"><meta name=twitter:title content="esxi硬盘RDM直通"><meta name=twitter:description content="RDM直通和挂载"></head><body class="ma0 avenir bg-near-white"><header><div class=bg-dark-gray><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l justify-between items-center center"><a href=/ class="f3 fw2 hover-white no-underline white-90 dib">不三之选</a><div class="flex-l items-center"><ul class="pl0 mr3"><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white no-underline white-90" href=/posts/ title="Posts page">Posts</a></li></ul><div class=ananke-socials></div></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l flex-wrap justify-between mw8 center ph3"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked">POSTS</aside><div id=sharing class="mt3 ananke-socials"></div><h1 class="f1 athelas mt3 mb1">esxi硬盘RDM直通</h1><p class=tracked>By <strong>uncoder-fe</strong></p><time class="f6 mv4 dib tracked" datetime=2022-03-17T16:01:25+08:00>March 17, 2022</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>RDM直通和挂载</p><h1 id=rdm直通>RDM直通</h1><ol><li>找到磁盘号（存储-设备）选项卡</li></ol><pre tabindex=0><code>// 小括号里的内容
+Local ATA Disk (t10.ATA_____HITACHI_HTS545032B9A300_________________091209PBNC041YG058GR
+</code></pre><ol start=2><li>找到目标vmfs的号</li></ol><pre tabindex=0><code>/vmfs/volumes/622c8bd0-22b5b4d4-de08-b47af13393f0
+</code></pre><ol start=3><li>ssh登陆ESXI</li></ol><pre tabindex=0><code>vmkfstools -z /vmfs/devices/disks/t10.ATA_____WDC_WD3200BEVT2D22ZCT0________________________WD2DWX30AC9J7619 /vmfs/volumes/622c8bd0-22b5b4d4-de08-b47af13393f0/320G-wd.vmdk
+</code></pre><ol start=4><li>使用时添加硬盘即可</li></ol><h1 id=硬盘挂载>硬盘挂载</h1><p>参考：<a href=https://zhuanlan.zhihu.com/p/35774442>传送门</a></p><ol start=0><li>查看当前磁盘
+Disk 磁盘
+Device 分区</li></ol><pre tabindex=0><code>sudo fdisk -l
+
+Disk /dev/sdb: 298.9 GiB, 320072933376 bytes, 625142448 sectors
+Disk model: WDC WD3200BEVT-2
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x021fbde2
+// 备注：当没有挂载时，下面的/dev/sdb1不存在
+Device     Boot Start       End   Sectors   Size Id Type
+/dev/sdb1        2048 625142447 625140400 298.1G 83 Linux
+
+
+Disk /dev/sda: 30 GiB, 32212254720 bytes, 62914560 sectors
+Disk model: Virtual disk    
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 57D5FF8C-10A3-45E7-B2F2-04F2424520EA
+
+Device       Start      End  Sectors  Size Type
+/dev/sda1     2048     4095     2048    1M BIOS boot
+/dev/sda2     4096  3149823  3145728  1.5G Linux filesystem
+/dev/sda3  3149824 62912511 59762688 28.5G Linux filesystem
+</code></pre><ol><li>格式化挂载的磁盘为ext4格式</li></ol><pre tabindex=0><code>sudo mkfs -t ext4 /dev/sdb
+</code></pre><ol start=2><li>新硬盘分区</li></ol><pre tabindex=0><code>sudo fdisk /dev/sdb
+- n 命令创建新分区
+- p 命令创建一个主分区
+- 选择默认创建第一个分区
+- 设置分区的开始位置
+- 设置分区的结束位置，因为只设置一个分区，因此都选择默认选项
+- w 命令保存分区设置
+</code></pre><ol start=3><li>重新格式化</li></ol><pre tabindex=0><code>sudo mkfs -t ext4 /dev/sdb1
+</code></pre><ol start=4><li>挂载分区</li></ol><pre tabindex=0><code>这里直接挂载到 ~ 目录
+sudo mount /dev/sdb1 ~
+</code></pre><ol start=5><li>查看是否成功</li></ol><p>df命令</p><pre tabindex=0><code>Filesystem                        1K-blocks    Used Available Use% Mounted on
+udev                                 970472       0    970472   0% /dev
+tmpfs                                203092    1200    201892   1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv  14638072 4502912   9371872  33% /
+tmpfs                               1015452       0   1015452   0% /dev/shm
+tmpfs                                  5120       0      5120   0% /run/lock
+tmpfs                               1015452       0   1015452   0% /sys/fs/cgroup
+/dev/loop0                            63488   63488         0 100% /snap/core20/1328
+/dev/loop2                            44672   44672         0 100% /snap/snapd/14978
+/dev/loop1                            68864   68864         0 100% /snap/lxd/21835
+/dev/sda2                           1515376  112476   1307876   8% /boot
+/dev/sdb1                         306615568   65564 290905112   1% /home/uuu
+tmpfs                                203088       0    203088   0% /run/user/1000
+</code></pre><ol start=6><li>开启自动挂载</li></ol><p>重启后发现挂载消失了，所以开启自动挂载</p><p>6.1 查看</p><pre tabindex=0><code>ls -l /dev/disk/by-uuid
+
+lrwxrwxrwx 1 root root 10 Mar 17 15:06 48231779-5869-4922-a4c1-618179053280 -&gt; ../../sdb1
+</code></pre><p>6.2 备份原有的 /etc/fstab 文件</p><pre tabindex=0><code>sudo cp /etc/fstab /etc/fstab.bak
+</code></pre><p>6.3 编辑/etc/fstab,粘贴</p><pre tabindex=0><code># /home/uuu
+UUID=48231779-5869-4922-a4c1-618179053280 /home/uuu       ext4    defaults        0       2
+</code></pre><ul class=pa0><li class="list di"><a href=/tags/esxi/ class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">esxi</a></li></ul><div class="mt6 instapaper_ignoref"></div></div><aside class="w-30-l mt6-l"><div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links"><p class="f5 b mb3">Related</p><ul class="pa0 list"><li class=mb2><a href=/posts/docker%E5%AE%89%E8%A3%85minio/>docker安装minio</a></li></ul></div></aside></article></main><footer class="bg-dark-gray bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href=/>&copy; 不三之选 2023</a><div><div class=ananke-socials></div></div></div></footer></body></html>

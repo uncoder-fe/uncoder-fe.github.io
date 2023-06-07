@@ -1,0 +1,231 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>vps折腾记录 | 不三之选</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="OS 选择以及使用
+debian 9
+/var/log  通用日志
+/etc      通用配置文件
+
+修改ssh端口
+/etc/ssh/sshd_config
+/etc/ssh/ssh_config
+service ssh restart
+
+查看占用
+netstat -lnp | grep ss-server
+
+查看进程
+ps -ax | grep ss-server
+
+结束PID对应的进程
+kill -9 [PID]
+
+查找文件
+find . -name &#34;*.json&#34;
+
+查看所有端口使用
+netstat –apn
+netstat -anp|grep 80
+
+查看80端口使用
+lsof -i:80
+
+结束nginx
+pkill -9 -f nginx
+
+后台挂起运行
+nohup xxxxxx &
+
+下载文件
+scp -r root@0.0.0.0: /folder /localfolder
+"><meta name=generator content="Hugo 0.111.3"><meta name=robots content="noindex, nofollow"><link rel=stylesheet href=/ananke/css/main.min.css><meta property="og:title" content="vps折腾记录"><meta property="og:description" content="OS 选择以及使用
+debian 9
+/var/log  通用日志
+/etc      通用配置文件
+
+修改ssh端口
+/etc/ssh/sshd_config
+/etc/ssh/ssh_config
+service ssh restart
+
+查看占用
+netstat -lnp | grep ss-server
+
+查看进程
+ps -ax | grep ss-server
+
+结束PID对应的进程
+kill -9 [PID]
+
+查找文件
+find . -name &#34;*.json&#34;
+
+查看所有端口使用
+netstat –apn
+netstat -anp|grep 80
+
+查看80端口使用
+lsof -i:80
+
+结束nginx
+pkill -9 -f nginx
+
+后台挂起运行
+nohup xxxxxx &
+
+下载文件
+scp -r root@0.0.0.0: /folder /localfolder
+"><meta property="og:type" content="article"><meta property="og:url" content="/posts/vps%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-10-27T10:02:00+08:00"><meta property="article:modified_time" content="2017-10-27T10:02:00+08:00"><meta itemprop=name content="vps折腾记录"><meta itemprop=description content="OS 选择以及使用
+debian 9
+/var/log  通用日志
+/etc      通用配置文件
+
+修改ssh端口
+/etc/ssh/sshd_config
+/etc/ssh/ssh_config
+service ssh restart
+
+查看占用
+netstat -lnp | grep ss-server
+
+查看进程
+ps -ax | grep ss-server
+
+结束PID对应的进程
+kill -9 [PID]
+
+查找文件
+find . -name &#34;*.json&#34;
+
+查看所有端口使用
+netstat –apn
+netstat -anp|grep 80
+
+查看80端口使用
+lsof -i:80
+
+结束nginx
+pkill -9 -f nginx
+
+后台挂起运行
+nohup xxxxxx &
+
+下载文件
+scp -r root@0.0.0.0: /folder /localfolder
+"><meta itemprop=datePublished content="2017-10-27T10:02:00+08:00"><meta itemprop=dateModified content="2017-10-27T10:02:00+08:00"><meta itemprop=wordCount content="208"><meta itemprop=keywords content="服务器,debian,"><meta name=twitter:card content="summary"><meta name=twitter:title content="vps折腾记录"><meta name=twitter:description content="OS 选择以及使用
+debian 9
+/var/log  通用日志
+/etc      通用配置文件
+
+修改ssh端口
+/etc/ssh/sshd_config
+/etc/ssh/ssh_config
+service ssh restart
+
+查看占用
+netstat -lnp | grep ss-server
+
+查看进程
+ps -ax | grep ss-server
+
+结束PID对应的进程
+kill -9 [PID]
+
+查找文件
+find . -name &#34;*.json&#34;
+
+查看所有端口使用
+netstat –apn
+netstat -anp|grep 80
+
+查看80端口使用
+lsof -i:80
+
+结束nginx
+pkill -9 -f nginx
+
+后台挂起运行
+nohup xxxxxx &
+
+下载文件
+scp -r root@0.0.0.0: /folder /localfolder
+"></head><body class="ma0 avenir bg-near-white"><header><div class=bg-dark-gray><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l justify-between items-center center"><a href=/ class="f3 fw2 hover-white no-underline white-90 dib">不三之选</a><div class="flex-l items-center"><ul class="pl0 mr3"><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white no-underline white-90" href=/posts/ title="Posts page">Posts</a></li></ul><div class=ananke-socials></div></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l flex-wrap justify-between mw8 center ph3"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked">POSTS</aside><div id=sharing class="mt3 ananke-socials"></div><h1 class="f1 athelas mt3 mb1">vps折腾记录</h1><p class=tracked>By <strong>uncoder</strong></p><time class="f6 mv4 dib tracked" datetime=2017-10-27T10:02:00+08:00>October 27, 2017</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id=os-选择以及使用>OS 选择以及使用</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>debian <span style=color:#ae81ff>9</span>
+</span></span><span style=display:flex><span>/var/log  通用日志
+</span></span><span style=display:flex><span>/etc      通用配置文件
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>修改ssh端口
+</span></span><span style=display:flex><span>/etc/ssh/sshd_config
+</span></span><span style=display:flex><span>/etc/ssh/ssh_config
+</span></span><span style=display:flex><span>service ssh restart
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>查看占用
+</span></span><span style=display:flex><span>netstat -lnp | grep ss-server
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>查看进程
+</span></span><span style=display:flex><span>ps -ax | grep ss-server
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>结束PID对应的进程
+</span></span><span style=display:flex><span>kill -9 <span style=color:#f92672>[</span>PID<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>查找文件
+</span></span><span style=display:flex><span>find . -name <span style=color:#e6db74>&#34;*.json&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>查看所有端口使用
+</span></span><span style=display:flex><span>netstat –apn
+</span></span><span style=display:flex><span>netstat -anp|grep <span style=color:#ae81ff>80</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>查看80端口使用
+</span></span><span style=display:flex><span>lsof -i:80
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>结束nginx
+</span></span><span style=display:flex><span>pkill -9 -f nginx
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>后台挂起运行
+</span></span><span style=display:flex><span>nohup xxxxxx &amp;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>下载文件
+</span></span><span style=display:flex><span>scp -r root@0.0.0.0: /folder /localfolder
+</span></span></code></pre></div><h2 id=安装-docker>安装 docker</h2><p><a href=http://www.jishux.com/plus/view-605986-1.html>传送门</a></p><p>1.编辑/etc/apt/sources.list 文件，加入:
+<code>deb http://http.debian.net/debian jessie-backports main</code></p><p>2.更新源<code>apt-get update</code></p><p>3.安装<code>apt-get install docker.io</code></p><h1 id=安装-nodejs>安装 nodejs</h1><p><a href=https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions>传送门</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>curl -sL https://deb.nodesource.com/setup_8.x | bash - apt-get install -y nodejs
+</span></span></code></pre></div><h1 id=安装-nginx>安装 nginx</h1><p><a href=http://nginx.org/en/linux_packages.html>传送门</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>apt-get install nginx
+</span></span><span style=display:flex><span>//配置文件
+</span></span><span style=display:flex><span>/etc/nginx/sites-available/default
+</span></span></code></pre></div><h2 id=友好上网>友好上网</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>// 下载
+</span></span><span style=display:flex><span>git clone https://github.com/shadowsocks/shadowsocks-libev.git
+</span></span><span style=display:flex><span>cd shadowsocks-libev
+</span></span><span style=display:flex><span>git submodule update --init --recursive
+</span></span><span style=display:flex><span>// 编译环境
+</span></span><span style=display:flex><span><span style=color:#75715e>## Debian / Ubuntu</span>
+</span></span><span style=display:flex><span>sudo apt-get install --no-install-recommends gettext build-essential autoconf libtool libpcre3-dev asciidoc xmlto libev-dev libc-ares-dev automake libmbedtls-dev libsodium-dev
+</span></span><span style=display:flex><span><span style=color:#75715e># 安装加密</span>
+</span></span><span style=display:flex><span>export LIBSODIUM_VER<span style=color:#f92672>=</span>1.0.15
+</span></span><span style=display:flex><span>wget https://download.libsodium.org/libsodium/releases/libsodium-$LIBSODIUM_VER.tar.gz
+</span></span><span style=display:flex><span>tar xvf libsodium-$LIBSODIUM_VER.tar.gz
+</span></span><span style=display:flex><span>pushd libsodium-$LIBSODIUM_VER
+</span></span><span style=display:flex><span>./configure --prefix<span style=color:#f92672>=</span>/usr <span style=color:#f92672>&amp;&amp;</span> make
+</span></span><span style=display:flex><span>sudo make install
+</span></span><span style=display:flex><span>popd
+</span></span><span style=display:flex><span>sudo ldconfig
+</span></span><span style=display:flex><span><span style=color:#75715e># 安装加密</span>
+</span></span><span style=display:flex><span>export MBEDTLS_VER<span style=color:#f92672>=</span>2.6.0
+</span></span><span style=display:flex><span>wget https://tls.mbed.org/download/mbedtls-$MBEDTLS_VER-gpl.tgz
+</span></span><span style=display:flex><span>tar xvf mbedtls-$MBEDTLS_VER-gpl.tgz
+</span></span><span style=display:flex><span>pushd mbedtls-$MBEDTLS_VER
+</span></span><span style=display:flex><span>make SHARED<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> CFLAGS<span style=color:#f92672>=</span>-fPIC
+</span></span><span style=display:flex><span>sudo make DESTDIR<span style=color:#f92672>=</span>/usr install
+</span></span><span style=display:flex><span>popd
+</span></span><span style=display:flex><span>sudo ldconfig
+</span></span><span style=display:flex><span><span style=color:#75715e># 编译安装</span>
+</span></span><span style=display:flex><span>./autogen.sh <span style=color:#f92672>&amp;&amp;</span> ./configure <span style=color:#f92672>&amp;&amp;</span> make
+</span></span><span style=display:flex><span>sudo make install
+</span></span><span style=display:flex><span><span style=color:#75715e># 新建配置文件,目录随意</span>
+</span></span><span style=display:flex><span>/etc/shadowsocks-libev/config.json
+</span></span><span style=display:flex><span>内容如下
+</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;server&#34;</span>: <span style=color:#e6db74>&#34;0.0.0.0&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;server_port&#34;</span>: 8888,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;local_port&#34;</span>: 1080,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;password&#34;</span>: <span style=color:#e6db74>&#34;xxxxxx&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;timeout&#34;</span>: 500,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;chacha20-ietf-poly1305&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 后台运行</span>
+</span></span><span style=display:flex><span>nohup ss-server -c /etc/shadowsocks-libev/config.json -u &amp;
+</span></span></code></pre></div><p><a href=https://github.com/shadowsocks/shadowsocks>传送门</a>、<a href=https://github.com/shadowsocks/shadowsocks-libev>传送门</a></p><ul class=pa0><li class="list di"><a href=/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/ class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">服务器</a></li><li class="list di"><a href=/tags/debian/ class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">debian</a></li></ul><div class="mt6 instapaper_ignoref"></div></div><aside class="w-30-l mt6-l"></aside></article></main><footer class="bg-dark-gray bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href=/>&copy; 不三之选 2023</a><div><div class=ananke-socials></div></div></div></footer></body></html>
